@@ -1,0 +1,32 @@
+{
+    "name": "cryptomkt/cryptomkt",
+    "description": "SDK API Cryptomarket",
+    "keywords": [ "ethereum", "cryptomkt", "cryptomarket", "exchange"],
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://www.cryptomkt.com",
+    "authors": [
+        {
+            "name": "Pedro Pablo Bustamante Barrera",
+            "email": "pablo@cryptomkt.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Cryptomkt\\Exchange\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Cryptomkt\\Exchange\\Tests\\": "tests/" }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "require": {
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "psr/http-message": "^1.0",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    }
+}
