@@ -1,25 +1,25 @@
 <?php
 
-namespace Coinbase\Wallet;
+namespace Cryptomkt\Wallet;
 
-use Coinbase\Wallet\ActiveRecord\ActiveRecordContext;
-use Coinbase\Wallet\Enum\Param;
-use Coinbase\Wallet\Resource\Account;
-use Coinbase\Wallet\Resource\Address;
-use Coinbase\Wallet\Resource\Buy;
-use Coinbase\Wallet\Resource\Checkout;
-use Coinbase\Wallet\Resource\CurrentUser;
-use Coinbase\Wallet\Resource\Deposit;
-use Coinbase\Wallet\Resource\Merchant;
-use Coinbase\Wallet\Resource\Order;
-use Coinbase\Wallet\Resource\PaymentMethod;
-use Coinbase\Wallet\Resource\Resource;
-use Coinbase\Wallet\Resource\ResourceCollection;
-use Coinbase\Wallet\Resource\Sell;
-use Coinbase\Wallet\Resource\Transaction;
-use Coinbase\Wallet\Resource\User;
-use Coinbase\Wallet\Resource\Withdrawal;
-use Coinbase\Wallet\Resource\Notification;
+use Cryptomkt\Wallet\ActiveRecord\ActiveRecordContext;
+use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Resource\Account;
+use Cryptomkt\Wallet\Resource\Address;
+use Cryptomkt\Wallet\Resource\Buy;
+use Cryptomkt\Wallet\Resource\Checkout;
+use Cryptomkt\Wallet\Resource\CurrentUser;
+use Cryptomkt\Wallet\Resource\Deposit;
+use Cryptomkt\Wallet\Resource\Merchant;
+use Cryptomkt\Wallet\Resource\Order;
+use Cryptomkt\Wallet\Resource\PaymentMethod;
+use Cryptomkt\Wallet\Resource\Resource;
+use Cryptomkt\Wallet\Resource\ResourceCollection;
+use Cryptomkt\Wallet\Resource\Sell;
+use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Wallet\Resource\User;
+use Cryptomkt\Wallet\Resource\Withdrawal;
+use Cryptomkt\Wallet\Resource\Notification;
 
 /**
  * A client for interacting with the Coinbase API.

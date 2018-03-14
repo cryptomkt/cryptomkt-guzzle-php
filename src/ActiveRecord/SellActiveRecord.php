@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\ActiveRecord;
+namespace Cryptomkt\Wallet\ActiveRecord;
 
 trait SellActiveRecord 
 {

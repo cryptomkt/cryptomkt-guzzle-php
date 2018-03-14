@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\Exception;
+namespace Cryptomkt\Wallet\Exception;
 
 class BadRequestException extends HttpException
 {

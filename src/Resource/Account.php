@@ -1,11 +1,11 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\AccountActiveRecord;
-use Coinbase\Wallet\Enum\AccountType;
-use Coinbase\Wallet\Enum\ResourceType;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\ActiveRecord\AccountActiveRecord;
+use Cryptomkt\Wallet\Enum\AccountType;
+use Cryptomkt\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\Value\Money;
 
 class Account extends Resource
 {

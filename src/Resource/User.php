@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\UserActiveRecord;
-use Coinbase\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\ActiveRecord\UserActiveRecord;
+use Cryptomkt\Wallet\Enum\ResourceType;
 
 class User extends Resource
 {

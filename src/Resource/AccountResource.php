@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
 trait AccountResource 
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Coinbase\Wallet;
+namespace Cryptomkt\Wallet;
 
-use Coinbase\Wallet\Authentication\Authentication;
-use Coinbase\Wallet\Enum\Param;
-use Coinbase\Wallet\Exception\HttpException;
+use Cryptomkt\Wallet\Authentication\Authentication;
+use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Exception\HttpException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;

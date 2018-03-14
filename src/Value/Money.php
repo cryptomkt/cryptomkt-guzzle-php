@@ -1,8 +1,8 @@
 <?php
 
-namespace Coinbase\Wallet\Value;
+namespace Cryptomkt\Wallet\Value;
 
-use Coinbase\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
 
 class Money implements \JsonSerializable
 {

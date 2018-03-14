@@ -1,8 +1,8 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\CurrentUserActiveRecord;
+use Cryptomkt\Wallet\ActiveRecord\CurrentUserActiveRecord;
 
 class CurrentUser extends User
 {

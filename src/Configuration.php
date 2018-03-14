@@ -1,10 +1,10 @@
 <?php
 
-namespace Coinbase\Wallet;
+namespace Cryptomkt\Wallet;
 
-use Coinbase\Wallet\Authentication\ApiKeyAuthentication;
-use Coinbase\Wallet\Authentication\Authentication;
-use Coinbase\Wallet\Authentication\OAuthAuthentication;
+use Cryptomkt\Wallet\Authentication\ApiKeyAuthentication;
+use Cryptomkt\Wallet\Authentication\Authentication;
+use Cryptomkt\Wallet\Authentication\OAuthAuthentication;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\CheckoutActiveRecord;
-use Coinbase\Wallet\Enum\CheckoutStyle;
-use Coinbase\Wallet\Enum\OrderType;
-use Coinbase\Wallet\Enum\ResourceType;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\ActiveRecord\CheckoutActiveRecord;
+use Cryptomkt\Wallet\Enum\CheckoutStyle;
+use Cryptomkt\Wallet\Enum\OrderType;
+use Cryptomkt\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\Value\Money;
 
 class Checkout extends Resource
 {

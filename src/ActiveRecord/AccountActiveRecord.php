@@ -1,14 +1,14 @@
 <?php
 
-namespace Coinbase\Wallet\ActiveRecord;
+namespace Cryptomkt\Wallet\ActiveRecord;
 
-use Coinbase\Wallet\Resource\Address;
-use Coinbase\Wallet\Resource\Buy;
-use Coinbase\Wallet\Resource\Deposit;
-use Coinbase\Wallet\Resource\ResourceCollection;
-use Coinbase\Wallet\Resource\Sell;
-use Coinbase\Wallet\Resource\Transaction;
-use Coinbase\Wallet\Resource\Withdrawal;
+use Cryptomkt\Wallet\Resource\Address;
+use Cryptomkt\Wallet\Resource\Buy;
+use Cryptomkt\Wallet\Resource\Deposit;
+use Cryptomkt\Wallet\Resource\ResourceCollection;
+use Cryptomkt\Wallet\Resource\Sell;
+use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Wallet\Resource\Withdrawal;
 
 trait AccountActiveRecord
 {

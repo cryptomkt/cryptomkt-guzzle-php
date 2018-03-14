@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\Enum;
+namespace Cryptomkt\Wallet\Enum;
 
 /**
  * Supported payment method types.

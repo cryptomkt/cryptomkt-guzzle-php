@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\DepositActiveRecord;
-use Coinbase\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\ActiveRecord\DepositActiveRecord;
+use Cryptomkt\Wallet\Enum\ResourceType;
 
 class Deposit extends Transfer
 {

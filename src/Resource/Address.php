@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\AddressActiveRecord;
-use Coinbase\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\ActiveRecord\AddressActiveRecord;
+use Cryptomkt\Wallet\Enum\ResourceType;
 
 class Address extends Resource
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\Exception;
+namespace Cryptomkt\Wallet\Exception;
 
-use Coinbase\Wallet\Enum\ErrorCode;
-use Coinbase\Wallet\Value\Error;
+use Cryptomkt\Wallet\Enum\ErrorCode;
+use Cryptomkt\Wallet\Value\Error;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

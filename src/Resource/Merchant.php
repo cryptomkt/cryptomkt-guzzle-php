@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\MerchantActiveRecord;
-use Coinbase\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\ActiveRecord\MerchantActiveRecord;
+use Cryptomkt\Wallet\Enum\ResourceType;
 
 class Merchant extends Resource
 {

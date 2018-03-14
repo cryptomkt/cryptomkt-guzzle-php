@@ -1,9 +1,9 @@
 <?php
 
-namespace Coinbase\Wallet\ActiveRecord;
+namespace Cryptomkt\Wallet\ActiveRecord;
 
-use Coinbase\Wallet\Client;
-use Coinbase\Wallet\Exception\LogicException;
+use Cryptomkt\Wallet\Client;
+use Cryptomkt\Wallet\Exception\LogicException;
 
 class ActiveRecordContext
 {

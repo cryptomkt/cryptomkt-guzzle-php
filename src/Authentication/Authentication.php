@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\Authentication;
+namespace Cryptomkt\Wallet\Authentication;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

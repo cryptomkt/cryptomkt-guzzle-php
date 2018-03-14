@@ -1,12 +1,12 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\OrderActiveRecord;
-use Coinbase\Wallet\Enum\OrderStatus;
-use Coinbase\Wallet\Enum\OrderType;
-use Coinbase\Wallet\Enum\ResourceType;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\ActiveRecord\OrderActiveRecord;
+use Cryptomkt\Wallet\Enum\OrderStatus;
+use Cryptomkt\Wallet\Enum\OrderType;
+use Cryptomkt\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\Value\Money;
 
 class Order extends Resource
 {

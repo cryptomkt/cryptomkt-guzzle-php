@@ -1,6 +1,6 @@
 <?php
 
-namespace Coinbase\Wallet\Value;
+namespace Cryptomkt\Wallet\Value;
 
 class Fee
 {

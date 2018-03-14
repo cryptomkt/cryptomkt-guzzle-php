@@ -1,10 +1,10 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\ActiveRecord\BuyActiveRecord;
-use Coinbase\Wallet\Enum\ResourceType;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\ActiveRecord\BuyActiveRecord;
+use Cryptomkt\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\Value\Money;
 
 class Buy extends Transfer
 {

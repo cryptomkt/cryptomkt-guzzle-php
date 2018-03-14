@@ -1,8 +1,8 @@
 <?php
 
-namespace Coinbase\Wallet\Resource;
+namespace Cryptomkt\Wallet\Resource;
 
-use Coinbase\Wallet\Enum\ResourceType;
+use Cryptomkt\Wallet\Enum\ResourceType;
 
 class Application extends Resource
 {
