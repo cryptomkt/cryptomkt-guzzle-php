@@ -2,81 +2,27 @@
 
 namespace Cryptomkt\Wallet\Resource;
 
-use Cryptomkt\Wallet\ActiveRecord\OrderActiveRecord;
-use Cryptomkt\Wallet\Enum\OrderStatus;
-use Cryptomkt\Wallet\Enum\OrderType;
-use Cryptomkt\Wallet\Enum\ResourceType;
-use Cryptomkt\Wallet\Value\Money;
+// use Cryptomkt\Wallet\ActiveRecord\OrderActiveRecord;
+// use Cryptomkt\Wallet\Enum\OrderStatus;
+// use Cryptomkt\Wallet\Enum\OrderType;
+// use Cryptomkt\Wallet\Enum\ResourceType;
+// use Cryptomkt\Wallet\Value\Money;
 
 class Order extends Resource
 {
-    use OrderActiveRecord;
+    // use OrderActiveRecord;
 
     /** @var string */
-    private $code;
-
-    /**
-     * @var string
-     * @see OrderStatus
-     */
-    private $status;
-
-    /**
-     * @var string
-     * @see OrderType
-     */
-    private $type;
-
-    /** @var string */
-    private $name;
-
-    /** @var string */
-    private $description;
-
-    /** @var Money */
     private $amount;
 
-    /** @var Money */
-    private $payoutAmount;
+    /** @var string */
+    private $market;    
 
     /** @var string */
-    private $bitcoinAddress;
-
-    /** @var Money */
-    private $bitcoinAmount;
+    private $price;
 
     /** @var string */
-    private $notificationsUrl;
-
-    /** @var string */
-    private $bitcoinUri;
-
-    /** @var string */
-    private $receiptUrl;
-
-    /** @var \DateTime */
-    private $expiresAt;
-
-    /** @var \DateTime */
-    private $mispaidAt;
-
-    /** @var \DateTime */
-    private $paidAt;
-
-    /** @var string */
-    private $refundAddress;
-
-    /** @var Transaction */
-    private $transaction;
-
-    /** @var array */
-    private $refunds;
-
-    /** @var array */
-    private $mispayments;
-
-    /** @var array */
-    private $metadata;
+    private $type;
 
     /** @var \DateTime */
     private $createdAt;
@@ -84,56 +30,30 @@ class Order extends Resource
     /** @var \DateTime */
     private $updatedAt;
 
-    /**
-     * Creates an order reference.
-     *
-     * @param string $orderId The order id
-     *
-     * @return Order An order reference
-     */
-    public static function reference($orderId)
-    {
-        return new static('/v2/orders/'.$orderId);
-    }
-
-    public function __construct($resourcePath = null)
-    {
-        parent::__construct(ResourceType::ORDER, $resourcePath);
-    }
-
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
 
     public function getType()
     {
         return $this->type;
     }
 
-    public function getName()
+    public function getMarket()
     {
-        return $this->name;
+        return $this->market;
     }
 
-    public function setName($name)
+    public function setMarket($market)
     {
-        $this->name = $name;
+        $this->market = $market;
     }
 
-    public function getDescription()
+    public function getPrice()
     {
-        return $this->description;
+        return $this->market;
     }
 
-    public function setDescription($description)
+    public function setPrice($price)
     {
-        $this->description = $description;
+        $this->price = $price;
     }
 
     public function getAmount()
@@ -144,86 +64,6 @@ class Order extends Resource
     public function setAmount($amount)
     {
         $this->amount = $amount;
-    }
-
-    public function getPayoutAmount()
-    {
-        return $this->payoutAmount;
-    }
-
-    public function getBitcoinAddress()
-    {
-        return $this->bitcoinAddress;
-    }
-
-    public function getBitcoinAmount()
-    {
-        return $this->bitcoinAmount;
-    }
-
-    public function getNotificationsUrl()
-    {
-        return $this->notificationsUrl;
-    }
-
-    public function setNotificationsUrl($notificationsUrl)
-    {
-        $this->notificationsUrl = $notificationsUrl;
-    }
-
-    public function getBitcoinUri()
-    {
-        return $this->bitcoinUri;
-    }
-
-    public function getReceiptUrl()
-    {
-        return $this->receiptUrl;
-    }
-
-    public function getExpiresAt()
-    {
-        return $this->expiresAt;
-    }
-
-    public function getMispaidAt()
-    {
-        return $this->mispaidAt;
-    }
-
-    public function getPaidAt()
-    {
-        return $this->paidAt;
-    }
-
-    public function getRefundAddress()
-    {
-        return $this->refundAddress;
-    }
-
-    public function getTransaction()
-    {
-        return $this->transaction;
-    }
-
-    public function getRefunds()
-    {
-        return $this->refunds;
-    }
-
-    public function getMispayments()
-    {
-        return $this->mispayments;
-    }
-
-    public function getMetadata()
-    {
-        return $this->metadata;
-    }
-
-    public function setMetadata(array $metadata)
-    {
-        $this->metadata = $metadata;
     }
 
     public function getCreatedAt()

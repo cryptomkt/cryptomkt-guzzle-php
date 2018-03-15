@@ -2,7 +2,7 @@
     
     namespace Cryptomkt\Exchange\Value;
     
-    class Ticker {
+    class Ticker{
         
         private $high;
         private $volume;

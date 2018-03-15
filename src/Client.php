@@ -22,7 +22,7 @@ use Cryptomkt\Wallet\Resource\Withdrawal;
 use Cryptomkt\Wallet\Resource\Notification;
 
 /**
- * A client for interacting with the Coinbase API.
+ * A client for interacting with the Cryptomkt API.
  *
  * All methods marked as supporting pagination parameters support the following
  * parameters:
@@ -33,7 +33,7 @@ use Cryptomkt\Wallet\Resource\Notification;
  *  * ending_before (string)
  *  * fetch_all (Boolean)
  *
- * @link https://developers.coinbase.com/api/v2
+ * @link https://developers.cryptomkt.com/api/v1
  */
 class Client
 {
@@ -43,9 +43,9 @@ class Client
     private $mapper;
 
     /**
-     * Creates a new Coinbase client.
+     * Creates a new Cryptomkt client.
      *
-     * @return Client A new Coinbase client
+     * @return Client A new Cryptomkt client
      */
     public static function create(Configuration $configuration)
     {
@@ -92,7 +92,7 @@ class Client
         return $this->getAndMapData('/v1/market');
     }
     public function getTicker(array $params = []){
-        return $this->getAndMap('/v1/ticker',  $params, 'toTicker');
+        return $this->getAndMapData('/v1/ticker',$params);
     }
 
     // data api
@@ -641,7 +641,17 @@ class Client
      */
     public function getOrders(array $params = [])
     {
-        return $this->getAndMapCollection('/v2/orders', $params, 'toOrders');
+        return $this->getAndMapData('/v1/book', $params, 'toOrders');
+    }
+
+    public function getActiveOrders(array $params = [])
+    {
+        return $this->getAndMapData('/v1/orders/active', $params, 'toOrdersActive');
+    }
+
+    public function getExecutedOrders(array $params = [])
+    {
+        return $this->getAndMapData('/v1/orders/executed', $params, 'toOrdersActive');
     }
 
     public function loadNextOrders(ResourceCollection $orders, array $params = [])
@@ -660,10 +670,21 @@ class Client
         $this->getAndMap($order->getResourcePath(), $params, 'toOrder', $order);
     }
 
-    public function createOrder(Order $order, array $params = [])
+    public function createOrder(array $params = [])
     {
-        $data = $this->mapper->fromOrder($order);
-        $this->postAndMap('/v2/orders', $data + $params, 'toOrder', $order);
+        $this->postAndMap('/v1/orders/create', $params, 'toData');
+    }
+
+    /**
+     * Lists trades.
+     *
+     * Supports pagination parameters.
+     *
+     * @return ResourceCollection|Order[]
+     */
+    public function getTrades(array $params = [])
+    {
+        return $this->getAndMapData('/v1/trades', $params, 'toTrades');
     }
 
     /**
@@ -819,6 +840,10 @@ EOD;
     private function getAndMapData($path, array $params = [])
     {
         $response = $this->http->get($path, $params);
+        var_dump(get_class_methods($response));
+        echo '<br>-----------------------<br>';
+        echo $response->getBody();
+        echo '<br>-----------------------<br>';
 
         return $this->mapper->toData($response);
     }
@@ -861,6 +886,10 @@ EOD;
     private function postAndMap($path, array $params, $mapperMethod, Resource $resource = null)
     {
         $response = $this->http->post($path, $params);
+
+        echo '<br>-----------------------<br>';
+        echo $response->getBody();
+        echo '<br>-----------------------<br>';
 
         return $this->mapper->$mapperMethod($response, $resource);
     }

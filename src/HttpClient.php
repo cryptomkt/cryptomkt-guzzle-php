@@ -13,6 +13,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+
 class HttpClient
 {
     private $apiUrl;
@@ -20,6 +21,7 @@ class HttpClient
     private $auth;
     private $transport;
     private $caBundle;
+    private $requestPath;
 
     /** @var LoggerInterface */
     private $logger;
@@ -125,9 +127,13 @@ class HttpClient
     {
         $this->lastRequest = $request;
 
+        $this->requestPath = parse_url($request->getRequestTarget(), PHP_URL_PATH);
+        echo $request->getRequestTarget().'<br>';
+        echo $this->requestPath.'<br>';
+
         $options = $this->prepareOptions(
             $request->getMethod(),
-            $request->getRequestTarget(),
+            $this->requestPath,
             $params
         );
 
@@ -183,14 +189,15 @@ class HttpClient
         }
 
         $defaultHeaders = [
-            'User-Agent' => 'coinbase/php/'.Client::VERSION,
-            'CB-VERSION' => $this->apiVersion,
-            'Content-Type' => 'application/json',
+            // 'User-Agent' => 'cryptomkt/php/'.Client::VERSION,
+            // 'CB-VERSION' => $this->apiVersion,
+            'Content-Type' => 'application/x-www-form-urlencoded',
         ];
 
-        if (isset($params[Param::TWO_FACTOR_TOKEN])) {
-            $defaultHeaders['CB-2FA-TOKEN'] = $params[Param::TWO_FACTOR_TOKEN];
-        }
+        // if (isset($params[Param::TWO_FACTOR_TOKEN])) {
+        //     $defaultHeaders['CB-2FA-TOKEN'] = $params[Param::TWO_FACTOR_TOKEN];
+        // }
+        // 
 
         $options[RequestOptions::HEADERS] = $defaultHeaders + $this->auth->getRequestHeaders(
             $method,

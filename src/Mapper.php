@@ -31,12 +31,23 @@ use Cryptomkt\Wallet\Resource\BitcoinCashNetwork;
 use Cryptomkt\Wallet\Value\Fee;
 use Cryptomkt\Wallet\Value\Money;
 use Cryptomkt\Wallet\Value\Network;
+use Cryptomkt\Exchange\Value\Ticker;
 use Psr\Http\Message\ResponseInterface;
 
 
 class Mapper
 {
     private $reflection = [];
+
+    // markets
+    public function toMarket(RespondeInterface $response, Market $market = null){
+        return $this->toCollection($response, 'injectMarket');
+    }
+    
+    // tickers
+    public function toTicker(ResponseInterface $response, Ticker $ticker = null){
+        return $this->toCollection($response, 'injectTicker');
+    }
 
     // users
 
@@ -488,12 +499,12 @@ class Mapper
 
     private function toCollection(ResponseInterface $response, $method)
     {
-        $data = $this->decode($response);
+        $data = $this->decode($response); var_dump($data);
 
         if (isset($data['pagination'])) {
             $coll = new ResourceCollection(
-                $data['pagination']['previous_uri'],
-                $data['pagination']['next_uri']
+                $data['pagination']['previous'],
+                $data['pagination']['next']
             );
         } else {
             $coll = new ResourceCollection();
@@ -506,6 +517,12 @@ class Mapper
         return $coll;
     }
 
+    private function injectMarket(array $data, Market $market = null){
+        return $this->injectResource($data, $market ?: new Market());
+    }
+    private function injectTicker(array $data, Ticker $ticker = null){
+        return $this->injectResource($data, $ticker ?: new Ticker());
+    }
     private function injectUser(array $data, User $user = null)
     {
         return $this->injectResource($data, $user ?: new User());

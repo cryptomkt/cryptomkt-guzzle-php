@@ -37,14 +37,28 @@ class ApiKeyAuthentication implements Authentication
     }
 
     public function getRequestHeaders($method, $path, $body)
-    {
+    { 
         $timestamp = $this->getTimestamp();
-        $signature = $this->getHash('sha256', $timestamp.$method.$path.$body, $this->apiSecret);
+
+        switch ($path) 
+{            case '/v1/orders/create':
+                $body_object = json_decode($body);
+                $message_to_sign = $timestamp . $path . $body_object->amount . $body_object->market . $body_object->price . $body_object->type;
+                var_dump($message_to_sign);
+                $signature = $this->getHash('sha384', $message_to_sign, $this->apiSecret);
+
+                // echo $timestamp;
+                break;
+            
+            default:
+                $signature = $this->getHash('sha384', $timestamp.$path.$body, $this->apiSecret);
+                break;
+        }
 
         return [
-            'CB-ACCESS-KEY'       => $this->apiKey,
-            'CB-ACCESS-SIGN'      => $signature,
-            'CB-ACCESS-TIMESTAMP' => $timestamp,
+            'X-MKT-APIKEY' => $this->apiKey,
+            'X-MKT-SIGNATURE' => $signature,
+            'X-MKT-TIMESTAMP' => $timestamp,
         ];
     }
 
@@ -73,6 +87,6 @@ class ApiKeyAuthentication implements Authentication
 
     protected function getHash($algo, $data, $key)
     {
-        return hash_hmac($algo, $data, $key);
+        return hash_hmac($algo, $data, $key, FALSE);
     }
 }
