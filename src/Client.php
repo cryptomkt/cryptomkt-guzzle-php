@@ -87,6 +87,14 @@ class Client
         ActiveRecordContext::setClient($this);
     }
 
+    // Public endpoints
+    public function getMarkets(){
+        return $this->getAndMapData('/v1/market');
+    }
+    public function getTicker(array $params = []){
+        return $this->getAndMap('/v1/ticker',  $params, 'toTicker');
+    }
+
     // data api
 
     public function getCurrencies(array $params = [])
