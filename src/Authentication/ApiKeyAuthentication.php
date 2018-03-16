@@ -40,25 +40,34 @@ class ApiKeyAuthentication implements Authentication
     { 
         $timestamp = $this->getTimestamp();
 
-        switch ($path) 
-{            case '/v1/orders/create':
-                $body_object = json_decode($body);
-                $message_to_sign = $timestamp . $path . $body_object->amount . $body_object->market . $body_object->price . $body_object->type;
-                var_dump($message_to_sign);
-                $signature = $this->getHash('sha384', $message_to_sign, $this->apiSecret);
-
-                // echo $timestamp;
+        switch ($path){            
+            case '/v1/orders/create':
+                $message_to_sign = $timestamp . $path . $body['amount'].$body['market'].$body['price'].$body['type'];
                 break;
+
+            case '/v1/orders/cancel':
+                $message_to_sign = $timestamp . $path . $body['id'];
+                break;
+
+            case '/v1/payment/new_order':
+                // $message_to_sign = $timestamp . $path . $body['callback_url'].$body['error_url'].$body['external_id'].$body['payment_receiver'].$body['success_url'].$body['to_receive'].$body['to_receive_currency'];
+                $message_to_sign = $timestamp . $path . $body['payment_receiver'].$body['to_receive'].$body['to_receive_currency'];
+                break;   
             
             default:
-                $signature = $this->getHash('sha384', $timestamp.$path.$body, $this->apiSecret);
+                if(!is_string($body)){
+                    $body = http_build_query($body);
+                }
+                $message_to_sign = $timestamp.$path.$body;
                 break;
         }
+
+        $signature = $this->getHash('sha384', $message_to_sign, $this->apiSecret);
 
         return [
             'X-MKT-APIKEY' => $this->apiKey,
             'X-MKT-SIGNATURE' => $signature,
-            'X-MKT-TIMESTAMP' => $timestamp,
+            'X-MKT-TIMESTAMP' => (string)$timestamp,
         ];
     }
 

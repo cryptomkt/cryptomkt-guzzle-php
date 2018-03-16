@@ -2,12 +2,6 @@
 
 namespace Cryptomkt\Wallet\Resource;
 
-// use Cryptomkt\Wallet\ActiveRecord\OrderActiveRecord;
-// use Cryptomkt\Wallet\Enum\OrderStatus;
-// use Cryptomkt\Wallet\Enum\OrderType;
-// use Cryptomkt\Wallet\Enum\ResourceType;
-// use Cryptomkt\Wallet\Value\Money;
-
 class Order extends Resource
 {
     // use OrderActiveRecord;

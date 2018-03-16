@@ -20,7 +20,6 @@ class HttpClient
     private $apiVersion;
     private $auth;
     private $transport;
-    private $caBundle;
     private $requestPath;
 
     /** @var LoggerInterface */
@@ -38,16 +37,6 @@ class HttpClient
         $this->apiVersion = $apiVersion;
         $this->auth = $auth;
         $this->transport = $transport;
-    }
-
-    public function getCaBundle()
-    {
-        return $this->caBundle;
-    }
-
-    public function setCaBundle($caBundle)
-    {
-        $this->caBundle = $caBundle;
     }
 
     public function getLogger()
@@ -128,9 +117,7 @@ class HttpClient
         $this->lastRequest = $request;
 
         $this->requestPath = parse_url($request->getRequestTarget(), PHP_URL_PATH);
-        echo $request->getRequestTarget().'<br>';
-        echo $this->requestPath.'<br>';
-
+        
         $options = $this->prepareOptions(
             $request->getMethod(),
             $this->requestPath,
@@ -175,29 +162,16 @@ class HttpClient
     {
         $options = [];
 
-        if ($this->caBundle) {
-            $options[RequestOptions::VERIFY] = $this->caBundle;
-        }
-
-        // omit two_factor_token
-        $data = array_diff_key($params, [Param::TWO_FACTOR_TOKEN => true]);
-        if ($data) {
-            $options[RequestOptions::JSON] = $data;
-            $body = json_encode($data);
+        if ($params) {
+            $options[RequestOptions::FORM_PARAMS] = $params;
+            $body = $params;
         } else {
             $body = '';
         }
 
         $defaultHeaders = [
-            // 'User-Agent' => 'cryptomkt/php/'.Client::VERSION,
-            // 'CB-VERSION' => $this->apiVersion,
             'Content-Type' => 'application/x-www-form-urlencoded',
         ];
-
-        // if (isset($params[Param::TWO_FACTOR_TOKEN])) {
-        //     $defaultHeaders['CB-2FA-TOKEN'] = $params[Param::TWO_FACTOR_TOKEN];
-        // }
-        // 
 
         $options[RequestOptions::HEADERS] = $defaultHeaders + $this->auth->getRequestHeaders(
             $method,

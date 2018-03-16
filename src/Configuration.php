@@ -4,36 +4,20 @@ namespace Cryptomkt\Wallet;
 
 use Cryptomkt\Wallet\Authentication\ApiKeyAuthentication;
 use Cryptomkt\Wallet\Authentication\Authentication;
-use Cryptomkt\Wallet\Authentication\OAuthAuthentication;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
 
 class Configuration
 {
-    const DEFAULT_API_URL = 'https://api.cryptomkt.com';
-    const DEFAULT_API_VERSION = '2016-02-01';
+    // const DEFAULT_API_URL = 'https://api.cryptomkt.com';
+    const DEFAULT_API_URL = 'https://api-testing.dysopsis.com';
+    const DEFAULT_API_VERSION = '1.1';
 
     private $authentication;
     private $apiUrl;
     private $apiVersion;
-    private $caBundle;
     private $logger;
-
-    /**
-     * Creates a new configuration with OAuth authentication.
-     *
-     * @param string $accessToken  An OAuth access token
-     * @param string $refreshToken An OAuth refresh token
-     *
-     * @return Configuration A new configuration instance
-     */
-    public static function oauth($accessToken, $refreshToken = null)
-    {
-        return new static(
-            new OAuthAuthentication($accessToken, $refreshToken)
-        );
-    }
 
     /**
      * Creates a new configuration with API key authentication.
@@ -55,7 +39,6 @@ class Configuration
         $this->authentication = $authentication;
         $this->apiUrl = self::DEFAULT_API_URL;
         $this->apiVersion = self::DEFAULT_API_VERSION;
-        $this->caBundle = __DIR__.'/../etc/ca-coinbase.crt';
     }
 
     /** @return HttpClient */
@@ -68,7 +51,6 @@ class Configuration
             $transport ?: new GuzzleClient()
         );
 
-        $httpClient->setCaBundle($this->caBundle);
         $httpClient->setLogger($this->logger);
 
         return $httpClient;
@@ -108,16 +90,6 @@ class Configuration
     public function setApiVersion($apiVersion)
     {
         $this->apiVersion = $apiVersion;
-    }
-
-    public function getCaBundle()
-    {
-        return $this->caBundle;
-    }
-
-    public function setCaBundle($caBundle)
-    {
-        $this->caBundle = $caBundle;
     }
 
     public function getLogger()
