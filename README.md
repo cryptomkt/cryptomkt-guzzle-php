@@ -31,79 +31,18 @@ Install the library using Composer. Please read the [Composer Documentation](htt
 Use an API key and secret to access your own Coinbase account.
 
 ```php
-use Coinbase\Wallet\Client;
-use Coinbase\Wallet\Configuration;
+use Cryptomkt\Wallet\Client;
+use Cryptomkt\Wallet\Configuration;
 
 $configuration = Configuration::apiKey($apiKey, $apiSecret);
 $client = Client::create($configuration);
-```
-
-### OAuth2
-
-Use OAuth2 authentication to access a user's account other than your own. This
-library does not handle the handshake process, and assumes you have an access
-token when it's initialized. You can handle the handshake process using an
-[OAuth2 client][5] such as [league/oauth2-client][6].
-
-```php
-use Coinbase\Wallet\Client;
-use Coinbase\Wallet\Configuration;
-
-// with a refresh token
-$configuration = Configuration::oauth($accessToken, $refreshToken);
-
-// without a refresh token
-$configuration = Configuration::oauth($accessToken);
-
-$client = Client::create($configuration);
-```
-
-### Two factor authentication
-
-The send money endpoint requires a 2FA token in certain situations (read more
-[here][3]). A specific exception is thrown when this is required.
-
-```php
-use Coinbase\Wallet\Enum\Param;
-use Coinbase\Wallet\Exception\TwoFactorRequiredException;
-use Coinbase\Wallet\Resource\Transaction;
-
-$transaction = Transaction::send([
-    'toEmail' => 'test@test.com',
-    'bitcoinAmount' => 1
-]);
-
-$account = $client->getPrimaryAccount();
-try {
-    $client->createAccountTransaction($account, $transaction);
-} catch (TwoFactorRequiredException $e) {
-    // show 2FA dialog to user and collect 2FA token
-
-    // retry call with token
-    $client->createAccountTransaction($account, $transaction, [
-        Param::TWO_FACTOR_TOKEN => '123456',
-    ]);
-}
-```
-
-### Pagination
-
-Several endpoints are [paginated][4]. By default, the library will only fetch
-the first page of data for a given request. You can easily load more than just
-the first page of results.
-
-```php
-$transactions = $client->getAccountTransactions($account);
-while ($transactions->hasNextPage()) {
-    $client->loadNextTransactions($transactions);
-}
 ```
 
 You can also use the `fetch_all` parameter to have the library issue all the
 necessary requests to load the complete collection.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $transactions = $client->getAccountTransactions($account, [
     Param::FETCH_ALL => true,
@@ -116,53 +55,12 @@ It's prudent to be conscious of warnings. The library will log all warnings to a
 standard PSR-3 logger if one is configured.
 
 ```php
-use Coinbase\Wallet\Client;
-use Coinbase\Wallet\Configuration;
+use Cryptomkt\Wallet\Client;
+use Cryptomkt\Wallet\Configuration;
 
 $configuration = Configuration::apiKey($apiKey, $apiSecret);
 $configuration->setLogger($logger);
 $client = Client::create($configuration);
-```
-
-### Resource references
-
-In some cases the API will return resource references in place of expanded
-resource objects. These references can be expanded by refreshing them.
-
-```php
-$deposit = $this->client->getAccountDeposit($account, $depositId);
-$transaction = $deposit->getTransaction();
-if (!$transaction->isExpanded()) {
-    $this->client->refreshTransaction($transaction);
-}
-```
-
-You can also request that the API return an expanded resource in the initial
-request by using the `expand` parameter.
-
-```php
-use Coinbase\Wallet\Enum\Param;
-
-$deposit = $this->client->getAccountDeposit($account, $depositId, [
-    Param::EXPAND = ['transaction'],
-]);
-```
-
-Resource references can be used when creating new resources, avoiding the
-overhead of requesting a resource from the API.
-
-```php
-use Coinbase\Wallet\Resource\Deposit;
-use Coinbase\Wallet\Resource\PaymentMethod;
-
-$deposit = new Deposit([
-    'paymentMethod' => PaymentMethod::reference($paymentMethodId)
-]);
-
-// or use the convenience method
-$deposit = new Deposit([
-    'paymentMethodId' => $paymentMethodId
-]);
 ```
 
 ### Responses
@@ -193,7 +91,7 @@ $client->enableActiveRecord();
 Once enabled, you can call active record methods on resource objects.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $transactions = $account->getTransactions([
     Param::FETCH_ALL => true,
@@ -204,9 +102,9 @@ $transactions = $account->getTransactions([
 
 This is not intended to provide complete documentation of the API. For more
 detail, please refer to the
-[official documentation](https://developers.coinbase.com/api/v2).
+[official documentation](https://developers.cryptomkt.com/).
 
-### [Market Data](https://developers.coinbase.com/api/v2#data-api)
+### [Market Data](https://developers.cryptomkt.com/)
 
 **List supported native currencies**
 
@@ -300,7 +198,7 @@ $client->setPrimaryAccount($account);
 **Create a new bitcoin account**
 
 ```php
-use Coinbase\Wallet\Resource\Account;
+use Cryptomkt\Wallet\Resource\Account;
 
 $account = new Account([
     'name' => 'New Account'
@@ -344,7 +242,7 @@ $transactions = $client->getAddressTransactions($address);
 **Create a new receive address**
 
 ```php
-use Coinbase\Wallet\Resource\Address;
+use Cryptomkt\Wallet\Resource\Address;
 
 $address = new Address([
     'name' => 'New Address'
@@ -369,9 +267,9 @@ $transaction = $client->getAccountTransaction($account, $transactionId);
 **Send funds**
 
 ```php
-use Coinbase\Wallet\Enum\CurrencyCode;
-use Coinbase\Wallet\Resource\Transaction;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Wallet\Value\Money;
 
 $transaction = Transaction::send([
     'toBitcoinAddress' => 'ADDRESS',
@@ -386,8 +284,8 @@ $client->createAccountTransaction($account, $transaction);
 **Transfer funds to a new account**
 
 ```php
-use Coinbase\Wallet\Resource\Transaction;
-use Coinbase\Wallet\Resource\Account;
+use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Wallet\Resource\Account;
 
 $fromAccount = Account::reference($accountId);
 
@@ -408,9 +306,9 @@ $client->createAccountTransaction($fromAccount, $transaction);
 **Request funds**
 
 ```php
-use Coinbase\Wallet\Enum\CurrencyCode;
-use Coinbase\Wallet\Resource\Transaction;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Wallet\Value\Money;
 
 $transaction = Transaction::request([
     'amount'      => new Money(8, CurrencyCode::USD),
@@ -455,7 +353,7 @@ $buy = $client->getAccountBuy($account, $buyId);
 **Buy bitcoins**
 
 ```php
-use Coinbase\Wallet\Resource\Buy;
+use Cryptomkt\Wallet\Resource\Buy;
 
 $buy = new Buy([
     'bitcoinAmount' => 1
@@ -469,7 +367,7 @@ $client->createAccountBuy($account, $buy);
 You only need to do this if you pass `commit=false` when you create the buy.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $client->createAccountBuy($account, $buy, [Param::COMMIT => false]);
 $client->commitBuy($buy);
@@ -492,7 +390,7 @@ $sell = $client->getAccountSell($account, $sellId);
 **Sell bitcoins**
 
 ```php
-use Coinbase\Wallet\Resource\Sell;
+use Cryptomkt\Wallet\Resource\Sell;
 
 $sell = new Sell([
     'bitcoinAmount' => 1
@@ -506,7 +404,7 @@ $client->createAccountSell($account, $sell);
 You only need to do this if you pass `commit=false` when you create the sell.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $client->createAccountSell($account, $sell, [Param::COMMIT => false]);
 $client->commitSell($sell);
@@ -529,9 +427,9 @@ $deposit = $client->getAccountDeposit($account, $depositId);
 **Deposit funds**
 
 ```php
-use Coinbase\Wallet\Enum\CurrencyCode;
-use Coinbase\Wallet\Resource\Deposit;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Resource\Deposit;
+use Cryptomkt\Wallet\Value\Money;
 
 $deposit = new Deposit([
     'amount' => new Money(10, CurrencyCode::USD)
@@ -545,7 +443,7 @@ $client->createAccountDeposit($account, $deposit);
 You only need to do this if you pass `commit=false` when you create the deposit.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $client->createAccountDeposit($account, $deposit, [Param::COMMIT => false]);
 $client->commitDeposit($deposit);
@@ -568,9 +466,9 @@ $withdrawal = $client->getAccountWithdrawal($account, $withdrawalId);
 **Withdraw funds**
 
 ```php
-use Coinbase\Wallet\Enum\CurrencyCode;
-use Coinbase\Wallet\Resource\Withdrawal;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Resource\Withdrawal;
+use Cryptomkt\Wallet\Value\Money;
 
 $withdrawal = new Withdrawal([
     'amount' => new Money(10, CurrencyCode::USD)
@@ -584,7 +482,7 @@ $client->createAccountWithdrawal($account, $withdrawal);
 You only need to do this if you pass `commit=true` when you call the withdrawal method.
 
 ```php
-use Coinbase\Wallet\Enum\Param;
+use Cryptomkt\Wallet\Enum\Param;
 
 $client->createAccountWithdrawal($account, $withdrawal, [Param::COMMIT => false]);
 $client->commitWithdrawal($withdrawal);
@@ -629,8 +527,8 @@ $order = $client->getOrder($orderId);
 #### Create order
 
 ```php
-use Coinbase\Wallet\Resource\Order;
-use Coinbase\Wallet\Value\Money;
+use Cryptomkt\Wallet\Resource\Order;
+use Cryptomkt\Wallet\Value\Money;
 
 $order = new Order([
     'name' => 'Order #1234',
@@ -643,7 +541,7 @@ $client->createOrder($order);
 #### Refund order
 
 ```php
-use Coinbase\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Wallet\Enum\CurrencyCode;
 
 $client->refundOrder($order, CurrencyCode::BTC);
 ```
@@ -659,7 +557,7 @@ $checkouts = $client->getCheckouts();
 #### Create checkout
 
 ```php
-use Coinbase\Wallet\Resource\Checkout;
+use Cryptomkt\Wallet\Resource\Checkout;
 
 $params = array(
     'name'               => 'My Order',

@@ -50,8 +50,7 @@ class ApiKeyAuthentication implements Authentication
                 break;
 
             case '/v1/payment/new_order':
-                // $message_to_sign = $timestamp . $path . $body['callback_url'].$body['error_url'].$body['external_id'].$body['payment_receiver'].$body['success_url'].$body['to_receive'].$body['to_receive_currency'];
-                $message_to_sign = $timestamp . $path . $body['payment_receiver'].$body['to_receive'].$body['to_receive_currency'];
+                $message_to_sign = $timestamp . $path . $body['callback_url'].$body['error_url'].$body['external_id'].$body['payment_receiver'].$body['refund_email'].$body['success_url'].$body['to_receive'].$body['to_receive_currency'];
                 break;   
             
             default:
