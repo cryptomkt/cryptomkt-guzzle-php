@@ -6,10 +6,10 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-4": { "Cryptomkt\\Wallet\\": "src/" }
+        "psr-4": { "Cryptomkt\\Exchange\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "Cryptomkt\\Wallet\\Tests\\": "tests/" }
+        "psr-4": { "Cryptomkt\\Exchange\\Tests\\": "tests/" }
     },
     "require": {
         "php": ">=5.6.0",
