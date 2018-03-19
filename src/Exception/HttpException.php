@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptomkt\Wallet\Exception;
+namespace Cryptomkt\Exchange\Exception;
 
-use Cryptomkt\Wallet\Enum\ErrorCode;
-use Cryptomkt\Wallet\Value\Error;
+use Cryptomkt\Exchange\Enum\ErrorCode;
+use Cryptomkt\Exchange\Value\Error;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

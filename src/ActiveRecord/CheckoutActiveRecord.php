@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptomkt\Wallet\ActiveRecord;
+namespace Cryptomkt\Exchange\ActiveRecord;
 
-use Cryptomkt\Wallet\Resource\Order;
-use Cryptomkt\Wallet\Resource\ResourceCollection;
+use Cryptomkt\Exchange\Resource\Order;
+use Cryptomkt\Exchange\Resource\ResourceCollection;
 
 trait CheckoutActiveRecord
 {

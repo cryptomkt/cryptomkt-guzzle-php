@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptomkt\Wallet\ActiveRecord;
+namespace Cryptomkt\Exchange\ActiveRecord;
 
-use Cryptomkt\Wallet\Resource\ResourceCollection;
-use Cryptomkt\Wallet\Resource\Transaction;
+use Cryptomkt\Exchange\Resource\ResourceCollection;
+use Cryptomkt\Exchange\Resource\Transaction;
 
 trait AddressActiveRecord
 {

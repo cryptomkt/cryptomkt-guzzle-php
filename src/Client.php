@@ -1,12 +1,12 @@
 <?php
 
-namespace Cryptomkt\Wallet;
+namespace Cryptomkt\Exchange;
 
-use Cryptomkt\Wallet\ActiveRecord\ActiveRecordContext;
-use Cryptomkt\Wallet\Enum\Param;
-use Cryptomkt\Wallet\Resource\Order;
-use Cryptomkt\Wallet\Resource\Resource;
-use Cryptomkt\Wallet\Resource\ResourceCollection;
+use Cryptomkt\Exchange\ActiveRecord\ActiveRecordContext;
+use Cryptomkt\Exchange\Enum\Param;
+use Cryptomkt\Exchange\Resource\Order;
+use Cryptomkt\Exchange\Resource\Resource;
+use Cryptomkt\Exchange\Resource\ResourceCollection;
 
 class Client
 {

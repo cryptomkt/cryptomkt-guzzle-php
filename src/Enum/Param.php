@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\Enum;
+namespace Cryptomkt\Exchange\Enum;
 
 /**
  * Supported parameter keys.

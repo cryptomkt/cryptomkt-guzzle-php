@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\ActiveRecord;
+namespace Cryptomkt\Exchange\ActiveRecord;
 
 trait UserActiveRecord
 {

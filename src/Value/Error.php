@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\Value;
+namespace Cryptomkt\Exchange\Value;
 
 class Error
 {

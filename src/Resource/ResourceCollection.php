@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\Resource;
+namespace Cryptomkt\Exchange\Resource;
 
 class ResourceCollection implements \IteratorAggregate, \Countable, \ArrayAccess
 {

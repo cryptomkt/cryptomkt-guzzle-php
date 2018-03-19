@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\Exception;
+namespace Cryptomkt\Exchange\Exception;
 
 interface Exception 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptomkt\Wallet\Resource;
+namespace Cryptomkt\Exchange\Resource;
 
 class Order extends Resource
 {

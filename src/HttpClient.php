@@ -1,10 +1,10 @@
 <?php
 
-namespace Cryptomkt\Wallet;
+namespace Cryptomkt\Exchange;
 
-use Cryptomkt\Wallet\Authentication\Authentication;
-use Cryptomkt\Wallet\Enum\Param;
-use Cryptomkt\Wallet\Exception\HttpException;
+use Cryptomkt\Exchange\Authentication\Authentication;
+use Cryptomkt\Exchange\Enum\Param;
+use Cryptomkt\Exchange\Exception\HttpException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;

@@ -1,26 +1,15 @@
-# Coinbase Wallet PHP Library
+# CryptoMarket PHP SDK
 
-[![Build Status](https://travis-ci.org/coinbase/coinbase-php.svg)](https://travis-ci.org/coinbase/coinbase-php)
-[![Latest Stable Version](https://poser.pugx.org/coinbase/coinbase/v/stable)](https://packagist.org/packages/coinbase/coinbase)
-[![Total Downloads](https://poser.pugx.org/coinbase/coinbase/downloads)](https://packagist.org/packages/coinbase/coinbase)
-[![Latest Unstable Version](https://poser.pugx.org/coinbase/coinbase/v/unstable)](https://packagist.org/packages/coinbase/coinbase)
-[![License](https://poser.pugx.org/coinbase/coinbase/license)](https://packagist.org/packages/coinbase/coinbase)
-
-This is the official client library for the [Coinbase Wallet API v2][1]. We
-provide an intuitive, stable interface to integrate Coinbase Wallet into your
+Official SDK library for the [Crypto Market Exchange SDK v1][1] to integrate Coinbase Exchange into your
 PHP project.
-
-_Important:_ As this library is targeted for newer API v2, it requires v2
-permissions (i.e. `wallet:accounts:read`). If you're still using v1, please use
-the [older version][2] of this library.
 
 ## Installation
 
-Install the library using Composer. Please read the [Composer Documentation](https://getcomposer.org/doc/01-basic-usage.md) if you are unfamiliar with Composer or dependency managers in general.
+This library could be installed using Composer. Please read the [Composer Documentation](https://getcomposer.org/doc/01-basic-usage.md).
 
 ```json
 "require": {
-    "coinbase/coinbase": "~2.0"
+    "cryptomkt/cryptomkt": "~1.1"
 }
 ```
 
@@ -28,11 +17,11 @@ Install the library using Composer. Please read the [Composer Documentation](htt
 
 ### API Key
 
-Use an API key and secret to access your own Coinbase account.
+Use an API key and secret to access your own Crypto Market account.
 
 ```php
-use Cryptomkt\Wallet\Client;
-use Cryptomkt\Wallet\Configuration;
+use Cryptomkt\Exchange\Client;
+use Cryptomkt\Exchange\Configuration;
 
 $configuration = Configuration::apiKey($apiKey, $apiSecret);
 $client = Client::create($configuration);
@@ -42,7 +31,7 @@ You can also use the `fetch_all` parameter to have the library issue all the
 necessary requests to load the complete collection.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $transactions = $client->getAccountTransactions($account, [
     Param::FETCH_ALL => true,
@@ -55,8 +44,8 @@ It's prudent to be conscious of warnings. The library will log all warnings to a
 standard PSR-3 logger if one is configured.
 
 ```php
-use Cryptomkt\Wallet\Client;
-use Cryptomkt\Wallet\Configuration;
+use Cryptomkt\Exchange\Client;
+use Cryptomkt\Exchange\Configuration;
 
 $configuration = Configuration::apiKey($apiKey, $apiSecret);
 $configuration->setLogger($logger);
@@ -91,7 +80,7 @@ $client->enableActiveRecord();
 Once enabled, you can call active record methods on resource objects.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $transactions = $account->getTransactions([
     Param::FETCH_ALL => true,
@@ -198,7 +187,7 @@ $client->setPrimaryAccount($account);
 **Create a new bitcoin account**
 
 ```php
-use Cryptomkt\Wallet\Resource\Account;
+use Cryptomkt\Exchange\Resource\Account;
 
 $account = new Account([
     'name' => 'New Account'
@@ -242,7 +231,7 @@ $transactions = $client->getAddressTransactions($address);
 **Create a new receive address**
 
 ```php
-use Cryptomkt\Wallet\Resource\Address;
+use Cryptomkt\Exchange\Resource\Address;
 
 $address = new Address([
     'name' => 'New Address'
@@ -267,9 +256,9 @@ $transaction = $client->getAccountTransaction($account, $transactionId);
 **Send funds**
 
 ```php
-use Cryptomkt\Wallet\Enum\CurrencyCode;
-use Cryptomkt\Wallet\Resource\Transaction;
-use Cryptomkt\Wallet\Value\Money;
+use Cryptomkt\Exchange\Enum\CurrencyCode;
+use Cryptomkt\Exchange\Resource\Transaction;
+use Cryptomkt\Exchange\Value\Money;
 
 $transaction = Transaction::send([
     'toBitcoinAddress' => 'ADDRESS',
@@ -284,8 +273,8 @@ $client->createAccountTransaction($account, $transaction);
 **Transfer funds to a new account**
 
 ```php
-use Cryptomkt\Wallet\Resource\Transaction;
-use Cryptomkt\Wallet\Resource\Account;
+use Cryptomkt\Exchange\Resource\Transaction;
+use Cryptomkt\Exchange\Resource\Account;
 
 $fromAccount = Account::reference($accountId);
 
@@ -306,9 +295,9 @@ $client->createAccountTransaction($fromAccount, $transaction);
 **Request funds**
 
 ```php
-use Cryptomkt\Wallet\Enum\CurrencyCode;
-use Cryptomkt\Wallet\Resource\Transaction;
-use Cryptomkt\Wallet\Value\Money;
+use Cryptomkt\Exchange\Enum\CurrencyCode;
+use Cryptomkt\Exchange\Resource\Transaction;
+use Cryptomkt\Exchange\Value\Money;
 
 $transaction = Transaction::request([
     'amount'      => new Money(8, CurrencyCode::USD),
@@ -353,7 +342,7 @@ $buy = $client->getAccountBuy($account, $buyId);
 **Buy bitcoins**
 
 ```php
-use Cryptomkt\Wallet\Resource\Buy;
+use Cryptomkt\Exchange\Resource\Buy;
 
 $buy = new Buy([
     'bitcoinAmount' => 1
@@ -367,7 +356,7 @@ $client->createAccountBuy($account, $buy);
 You only need to do this if you pass `commit=false` when you create the buy.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $client->createAccountBuy($account, $buy, [Param::COMMIT => false]);
 $client->commitBuy($buy);
@@ -390,7 +379,7 @@ $sell = $client->getAccountSell($account, $sellId);
 **Sell bitcoins**
 
 ```php
-use Cryptomkt\Wallet\Resource\Sell;
+use Cryptomkt\Exchange\Resource\Sell;
 
 $sell = new Sell([
     'bitcoinAmount' => 1
@@ -404,7 +393,7 @@ $client->createAccountSell($account, $sell);
 You only need to do this if you pass `commit=false` when you create the sell.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $client->createAccountSell($account, $sell, [Param::COMMIT => false]);
 $client->commitSell($sell);
@@ -427,9 +416,9 @@ $deposit = $client->getAccountDeposit($account, $depositId);
 **Deposit funds**
 
 ```php
-use Cryptomkt\Wallet\Enum\CurrencyCode;
-use Cryptomkt\Wallet\Resource\Deposit;
-use Cryptomkt\Wallet\Value\Money;
+use Cryptomkt\Exchange\Enum\CurrencyCode;
+use Cryptomkt\Exchange\Resource\Deposit;
+use Cryptomkt\Exchange\Value\Money;
 
 $deposit = new Deposit([
     'amount' => new Money(10, CurrencyCode::USD)
@@ -443,7 +432,7 @@ $client->createAccountDeposit($account, $deposit);
 You only need to do this if you pass `commit=false` when you create the deposit.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $client->createAccountDeposit($account, $deposit, [Param::COMMIT => false]);
 $client->commitDeposit($deposit);
@@ -466,9 +455,9 @@ $withdrawal = $client->getAccountWithdrawal($account, $withdrawalId);
 **Withdraw funds**
 
 ```php
-use Cryptomkt\Wallet\Enum\CurrencyCode;
-use Cryptomkt\Wallet\Resource\Withdrawal;
-use Cryptomkt\Wallet\Value\Money;
+use Cryptomkt\Exchange\Enum\CurrencyCode;
+use Cryptomkt\Exchange\Resource\Withdrawal;
+use Cryptomkt\Exchange\Value\Money;
 
 $withdrawal = new Withdrawal([
     'amount' => new Money(10, CurrencyCode::USD)
@@ -482,7 +471,7 @@ $client->createAccountWithdrawal($account, $withdrawal);
 You only need to do this if you pass `commit=true` when you call the withdrawal method.
 
 ```php
-use Cryptomkt\Wallet\Enum\Param;
+use Cryptomkt\Exchange\Enum\Param;
 
 $client->createAccountWithdrawal($account, $withdrawal, [Param::COMMIT => false]);
 $client->commitWithdrawal($withdrawal);
@@ -527,8 +516,8 @@ $order = $client->getOrder($orderId);
 #### Create order
 
 ```php
-use Cryptomkt\Wallet\Resource\Order;
-use Cryptomkt\Wallet\Value\Money;
+use Cryptomkt\Exchange\Resource\Order;
+use Cryptomkt\Exchange\Value\Money;
 
 $order = new Order([
     'name' => 'Order #1234',
@@ -541,7 +530,7 @@ $client->createOrder($order);
 #### Refund order
 
 ```php
-use Cryptomkt\Wallet\Enum\CurrencyCode;
+use Cryptomkt\Exchange\Enum\CurrencyCode;
 
 $client->refundOrder($order, CurrencyCode::BTC);
 ```
@@ -557,7 +546,7 @@ $checkouts = $client->getCheckouts();
 #### Create checkout
 
 ```php
-use Cryptomkt\Wallet\Resource\Checkout;
+use Cryptomkt\Exchange\Resource\Checkout;
 
 $params = array(
     'name'               => 'My Order',
@@ -616,9 +605,5 @@ test suite.
 phpunit --group integration
 ```
 
-[1]: https://developers.coinbase.com/api/v2
-[2]: https://packagist.org/packages/coinbase/coinbase
-[3]: https://developers.coinbase.com/docs/wallet/coinbase-connect#two-factor-authentication
-[4]: https://developers.coinbase.com/api/v2#pagination
-[5]: https://packagist.org/search/?q=oauth2%20client
-[6]: https://packagist.org/packages/league/oauth2-client
+[1]: https://developers.cryptomkt.com
+[2]: https://packagist.org/packages/cryptomkt/cryptomkt

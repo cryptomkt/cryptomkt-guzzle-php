@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptomkt\Wallet\ActiveRecord;
+namespace Cryptomkt\Exchange\ActiveRecord;
 
-use Cryptomkt\Wallet\Client;
-use Cryptomkt\Wallet\Exception\LogicException;
+use Cryptomkt\Exchange\Client;
+use Cryptomkt\Exchange\Exception\LogicException;
 
 class ActiveRecordContext
 {

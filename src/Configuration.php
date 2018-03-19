@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptomkt\Wallet;
+namespace Cryptomkt\Exchange;
 
-use Cryptomkt\Wallet\Authentication\ApiKeyAuthentication;
-use Cryptomkt\Wallet\Authentication\Authentication;
+use Cryptomkt\Exchange\Authentication\ApiKeyAuthentication;
+use Cryptomkt\Exchange\Authentication\Authentication;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
