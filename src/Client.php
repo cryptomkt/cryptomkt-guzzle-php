@@ -75,7 +75,7 @@ class Client
      */
     public function getOrders(array $params = [])
     {
-        return $this->getAndMapData('/v1/book', $params, 'toOrders');
+        return $this->getAndMapData('/v1/book', $params, 'toData');
     }
 
     public function getActiveOrders(array $params = [])
@@ -85,7 +85,7 @@ class Client
 
     public function getExecutedOrders(array $params = [])
     {
-        return $this->getAndMapData('/v1/orders/executed', $params, 'toOrdersActive');
+        return $this->getAndMapData('/v1/orders/executed', $params, 'toData');
     }
 
     /** @return Order */
@@ -101,17 +101,17 @@ class Client
 
     public function createOrder(array $params = [])
     {
-        $this->postAndMap('/v1/orders/create', $params, 'toData');
+        return $this->postAndMap('/v1/orders/create', $params, 'toData');
     }
 
     public function createPayOrder(array $params = [])
     {
-        $this->postAndMap('/v1/payment/new_order', $params, 'toData');
+        return $this->postAndMap('/v1/payment/new_order', $params, 'toData');
     }
 
     public function getPayOrder(array $params = [])
     {
-        $this->getAndMapData('v1/payment/status', $params, 'toData');
+        return $this->getAndMapData('v1/payment/status', $params, 'toData');
     }
 
     /**
@@ -138,11 +138,6 @@ class Client
     private function getAndMapData($path, array $params = [])
     {
         $response = $this->http->get($path, $params);
-        // var_dump(get_class_methods($response));
-        echo '<br>-----------------------<br>';
-        echo $response->getBody();
-        echo '<br>-----------------------<br>';
-
         return $this->mapper->toData($response);
     }
 
