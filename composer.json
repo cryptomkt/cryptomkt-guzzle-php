@@ -1,7 +1,7 @@
 {
     "name": "cryptomkt/cryptomkt",
-    "description": "Cryptomkt API library",
-    "keywords": [ "ethereum", "cryptomkt" ],
+    "description": "Crypto Market API SDK Library",
+    "keywords": [ "ethereum", "cryptomkt", "stellar" ],
     "homepage": "http://www.cryptomkt.com",
     "type": "library",
     "license": "MIT",
