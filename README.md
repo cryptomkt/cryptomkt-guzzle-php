@@ -47,7 +47,7 @@ Each resource object has a `getRawData()` method which you can use to access any
 are not mapped to the object properties.
 
 ```php
-$data = $deposit->getRawData();
+$data = $markets->getRawData();
 ```
 
 Raw data from the last HTTP response is also available on the client object.
