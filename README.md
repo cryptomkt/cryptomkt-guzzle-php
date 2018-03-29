@@ -1,6 +1,6 @@
 # CryptoMarket PHP Client
 
-Official Client library for the [CryptoMarket Exchange Client v1][1] to integrate CryptoMarket into your
+Official Client library for the [CryptoMarket API v1][1] to integrate CryptoMarket into your
 PHP project.
 
 ## Installation
