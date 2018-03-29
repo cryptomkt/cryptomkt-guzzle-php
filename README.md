@@ -1,6 +1,6 @@
-# CryptoMarket PHP SDK
+# CryptoMarket PHP Client
 
-Official SDK library for the [CryptoMarket Exchange SDK v1][1] to integrate Coinbase Exchange into your
+Official Client library for the [CryptoMarket Exchange Client v1][1] to integrate CryptoMarket into your
 PHP project.
 
 ## Installation
