@@ -11,7 +11,6 @@ use Psr\Log\LoggerInterface;
 class Configuration
 {
     const DEFAULT_API_URL = 'https://api.cryptomkt.com';
-    // const DEFAULT_API_URL = 'https://api-testing.dysopsis.com';
     const DEFAULT_API_VERSION = '1.1';
 
     private $authentication;
