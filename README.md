@@ -1,6 +1,6 @@
 # CryptoMarket PHP Client
 
-Official Client library for the [CryptoMarket API v1][1] to integrate CryptoMarket into your
+Official Client library [CryptoMarket API v1][1] for integrate CryptoMarket into your
 PHP project.
 
 ## Installation
@@ -9,7 +9,7 @@ This library could be installed using Composer. Please read the [Composer Docume
 
 ```json
 "require": {
-    "cryptomkt/cryptomkt": "~1.1"
+    "cryptomkt/cryptomkt-php": "dev-master"
 }
 ```
 
