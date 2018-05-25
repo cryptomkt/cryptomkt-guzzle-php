@@ -1,8 +1,8 @@
 {
-    "name": "cryptomkt/cryptomkt",
-    "description": "Crypto Market API SDK Library",
-    "keywords": [ "ethereum", "cryptomkt", "stellar" ],
-    "homepage": "http://www.cryptomkt.com",
+    "name": "cryptomkt/cryptomkt-php",
+    "description": "Crypto Market PHP Client",
+    "keywords": [ "ethereum", "cryptomkt", "stellar", "php", "client", "bitcoin", "lumen", "cryptocurrencies", "blockchain"],
+    "homepage": "https://www.cryptomkt.com",
     "type": "library",
     "license": "MIT",
     "autoload": {
