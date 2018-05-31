@@ -114,6 +114,11 @@ class Client
         return $this->getAndMapData('v1/payment/status', $params, 'toData');
     }
 
+    public function getPayOrders(array $params = [])
+    {
+        return $this->getAndMapData('v1/payment/orders', $params, 'toData');
+    }
+
     /**
      * [getBalance description]
      * @return [array] [description]

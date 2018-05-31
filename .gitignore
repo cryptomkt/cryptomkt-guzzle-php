@@ -2,3 +2,5 @@ bin/
 composer.lock
 phpunit.xml
 vendor/
+test.php
+.phpintel/

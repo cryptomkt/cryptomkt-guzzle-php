@@ -478,7 +478,7 @@ class Mapper
     /** @return array */
     public function toData(ResponseInterface $response)
     {
-        return $this->decode($response)['data'];
+        return $this->decode($response);
     }
 
     /** @return Money|null */

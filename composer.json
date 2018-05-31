@@ -1,29 +1,41 @@
 {
-    "name": "cryptomkt/cryptomkt-php",
+    "name": "cryptomkt/cryptomkt-guzzle-php",
     "description": "Crypto Market PHP Client",
     "keywords": [ "ethereum", "cryptomkt", "stellar", "php", "client", "bitcoin", "lumen", "cryptocurrencies", "blockchain"],
     "homepage": "https://www.cryptomkt.com",
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-4": { "Cryptomkt\\Exchange\\": "src/" }
+        "psr-4": { 
+            "Cryptomkt\\Exchange\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": { "Cryptomkt\\Exchange\\Tests\\": "tests/" }
     },
     "minimum-stability": "dev",
-    "version": "0.1.0",
     "require": {
         "php": ">=5.6.0",
-	"guzzlehttp/guzzle": "~4.0|~5.0",
+        "guzzlehttp/guzzle": "^6.0",
         "psr/http-message": "^1.0",
-        "psr/log": "^1.0",
-        "guzzlehttp/psr7": "^1.4"
+        "psr/log": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7"
     },
     "config": {
         "bin-dir": "bin/"
+    },
+    "authors": [
+        {
+            "name": "Mario Pando",
+            "email": "mario@cryptomkt.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
     }
 }
