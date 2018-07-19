@@ -4,3 +4,4 @@ phpunit.xml
 vendor/
 test.php
 .phpintel/
+.phpintel
