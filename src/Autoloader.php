@@ -36,7 +36,7 @@ class Autoloader
      */
     public static function autoload($class)
     {
-        if (0 === strpos($class, 'Cryptomarket\\')) {
+        if (0 === strpos($class, 'Cryptomkt\\')) {
             $classname = substr($class, 7);
 
             $file = __DIR__.DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $classname).'.php';
