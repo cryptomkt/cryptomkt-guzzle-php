@@ -6,12 +6,12 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-4": { 
-            "Cryptomkt\\Exchange\\": "src/"
+        "psr-4": {
+            "Cryptomkt\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-4": { "Cryptomkt\\Exchange\\Tests\\": "tests/" }
+        "psr-4": { "Cryptomkt\\Tests\\": "tests/" }
     },
     "minimum-stability": "dev",
     "require": {
